@@ -1,5 +1,6 @@
-"use strict";
+'use strict';
 
+// Authorization factory: sets and stores user in persistent factory
 BCAP.factory('AuthFactory', [
 
 function () {
@@ -13,7 +14,6 @@ function () {
 		setUser (user) {
 			currentUser = user;
 			console.log(`currentUser: `, currentUser);
-			// console.log(`logged in as `, currentUser);
 		}
 	}
 }
