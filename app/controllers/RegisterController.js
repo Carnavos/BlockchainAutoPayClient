@@ -34,13 +34,21 @@ BCAP.controller('RegisterController', [
 		if (!authFactory.isAuthenticated()) {
 			authFactory.setUser()
 				.then(
+					// fill out user object with another api call
+					success => {
+						return authFactory.fillOutUser();
+					},
+					// log error
+					failure => console.log(`set user failure: `, failure)
+				).then(
 					// redirect to root on success
 					success => {
+						console.log(`fill out success`);
 						$location.path("/");
 						$scope.$apply();
 					},
 					// log error
-					failure => console.log(`set user failure: `, failure)
+					failure => console.log(`fill out user failure: `, failure)
 				);
 		}
  
