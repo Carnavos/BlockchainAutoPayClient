@@ -17,7 +17,13 @@
 	 	<h3>Full Name: {{ localUser.Name }}</h3>
 	 	<p>Coinbase Customer ID: {{ localUser.CustomerId }}</p>
 	 	<p>Current Access Token: {{ localUser.AccessToken }}</p>
+	 	<p>Primary Account Balance (BTC): {{ localUser.Balance.btcAmount }}</p>
+	 	<p>Primary Account Balance (USD): {{ localUser.Balance.usdAmount }}</p>
  	</div>
+
+ 	<button ng-click="requestInfo(localUser.AccessToken)">Request Info</button>
+ 	<button ng-click="requestAccounts(localUser.AccessToken)">Request Accounts</button>
+ 	<button ng-click="requestScopes(localUser.AccessToken)">Request Scopes</button>
 
   </section>
 
