@@ -19,6 +19,10 @@
 	 	<p>Current Access Token: {{ localUser.AccessToken }}</p>
  	</div>
 
+ 	<button ng-click="requestInfo(localUser.AccessToken)">Request Info</button>
+ 	<button ng-click="requestAccounts(localUser.AccessToken)">Request Accounts</button>
+ 	<button ng-click="requestScopes(localUser.AccessToken)">Request Scopes</button>
+
   </section>
 
 </article>
