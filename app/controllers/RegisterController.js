@@ -8,53 +8,35 @@ BCAP.controller('RegisterController', [
 
 	function ($http, $scope, $location, authFactory) {
 
-		// placeholder sandbox oauth
-		// let sandBoxUrl = `https://sandbox.coinbase.com/oauth/authorize?client_id=d5bc0dfc40d2c5aa69ea3e667152fbb1ab1bff9756a30caa67b4a9557ef056fd&redirect_uri=https%3A%2F%2Foauth.io%2Fauth&response_type=code&scope=wallet%3Auser%3Aread&state=CSRFToken123`;
-		// let localhost = `http%3A%2F%2Flocalhost%3A8080`;
-		// let localapi = "http://localhost:5000/api/";
 
-
-		// Should be wrapped in an isAuth boolean check against AuthFactory.
-			// initial page load should return no current user -> trigger call to api to login via coinbase
-			// redirects to this controller again, which will check 
-		// AuthFactory attempts to pull current user from BCAP Database linked to API
-		// $http({
-		// 	url: "http://localhost:5000/api/Customer",
-		// 	method: 'GET'
-		// })
-		// .then(response => {
-		// 	console.log(`RegisterController GET response: `, response);
-		// 	authFactory.parseUser(response);
-		// 	// redirect to root
-  //     // $scope.$apply();    
-		// });
-		console.log(`authFactory.isAuthenticated: `, authFactory.isAuthenticated());
-
-		// runs at page start (catches redirect)
-		if (!authFactory.isAuthenticated()) {
-			authFactory.setUser()
-				.then(
-					// fill out user object with another api call
-					success => {
-						return authFactory.fillOutUser();
-					},
-					// log error
-					failure => console.log(`set user failure: `, failure)
-				).then(
-					// redirect to root on success
-					success => {
-						console.log(`fill out success`);
-						$location.path("/");
-						$scope.$apply();
-					},
-					// log error
-					failure => console.log(`fill out user failure: `, failure)
-				);
-		}
+		// // runs at page start (catches redirect)
+		// if (!authFactory.isUserStored()) {
+		// 	authFactory.setUser()
+		// 		.then(
+		// 			// fill out user object with another api call
+		// 			success => {
+		// 				return authFactory.fillOutUser();
+		// 			},
+		// 			// log error
+		// 			failure => console.log(`set user failure: `, failure)
+		// 		).then(
+		// 			// redirect to root on success
+		// 			success => {
+		// 				console.log(`fill out success`);
+		// 				$location.path("/");
+		// 				$scope.$apply();
+		// 			},
+		// 			// log error
+		// 			failure => console.log(`fill out user failure: `, failure)
+		// 		);
+		// }
  
-		$scope.coinbaseSignIn = function () {
-			
-		}
+		// $scope.logout = () => {
+		// 	authFactory.clearUser();
+		// 	$location.path('/register');
+		// 	// need line to get to api/logout path and delete current user
+		// 	// $scope.$apply();
+		// }
 
 		// old OAuth function
 		$scope.coinbaseOauth1 = function () {

@@ -1,0 +1,11 @@
+<!-- Temporary Nav Bar -->
+<nav>
+  <div class="nav-wrapper primaryBgColor blue-grey primaryText">
+
+    <ul class="right">
+      <li><a href="#/register" ng-if="!isUserStored()">Login</a></li>
+      <li><a ng-if="isUserStored()">Signed in as {{ $parent.currentUser.userName }}</a></li>
+      <li><a href="#/register" ng-if="isUserStored()" ng-click="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>

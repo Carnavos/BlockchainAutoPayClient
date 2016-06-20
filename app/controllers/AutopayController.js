@@ -3,15 +3,23 @@
 BCAP.controller('AutopayController', [
 	'$http', 
 	'$scope',
+	'$location',
 	'AuthFactory',
 
-	function ($http, $scope, authFactory) {
+	function ($http, $scope, $location, authFactory) {
 
 		// $scope.localUser = {};
 		$scope.localUser = authFactory.getUser();
 		console.log(`localUser: `, $scope.localUser);
 
 		$scope.autopays = [];
+
+		// local logout (might not stay here)
+		// $scope.logout = () => {
+		// 	authFactory.clearUser();
+		// 	$location.path('/register');
+		// 	// $scope.$apply();
+		// }
 
 		$scope.requestInfo = (accessTokenString) => {
 			console.log(`accessTokenString: `, accessTokenString);

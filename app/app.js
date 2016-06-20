@@ -8,11 +8,11 @@ let BCAP = angular.module('BCAP', [
 // Promise used grant access to main views
 let isAuth = (AuthFactory, $location) => new Promise((resolve, reject) => {
 	// check if local user stored
-	if (AuthFactory.isAuthenticated()) {
-		console.log("[App] User Authenticated");
+	if (AuthFactory.isUserStored()) {
+		console.log("[App] User Stored");
 		resolve();
 	} else {
-		console.log("[App] User NOT Authenticated, rerouting to registry");
+		console.log("[App] User NOT Stored, rerouting to registry");
 		$location.path('/register');
 		reject();
 	}

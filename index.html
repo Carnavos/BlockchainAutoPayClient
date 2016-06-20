@@ -8,7 +8,14 @@
 
   <body ng-app="BCAP">
 
-    <div ng-view></div>
+    <div ng-controller="PageController">
+      <!-- Header  -->
+      <nav ng-include="'partials/navbar.html'"></nav>
+      <!-- Main View Div  -->
+      <div ng-view></div>
+    </div>
+
+    <!-- <div ng-view></div> -->
     
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/angular/angular.min.js"></script>
@@ -21,6 +28,7 @@
     <script src="app/factories/AuthFactory.js"></script>
     <script src="app/factories/AutopayFactory.js"></script>
     <!-- Controllers -->
+    <script src="app/controllers/PageController.js"></script>
     <script src="app/controllers/AutopayController.js"></script>
     <script src="app/controllers/RegisterController.js"></script>
 
