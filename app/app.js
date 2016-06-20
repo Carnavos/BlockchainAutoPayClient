@@ -9,7 +9,7 @@ let BCAP = angular.module('BCAP', [
 let isAuth = (AuthFactory, $location) => new Promise((resolve, reject) => {
 	// check if local user stored
 	if (AuthFactory.isUserStored()) {
-		console.log("[App] User Stored");
+		console.log("[App] User Stored: resolving route");
 		resolve();
 	} else {
 		console.log("[App] User NOT Stored, rerouting to registry");

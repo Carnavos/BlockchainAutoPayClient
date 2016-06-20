@@ -8,35 +8,8 @@ BCAP.controller('RegisterController', [
 
 	function ($http, $scope, $location, authFactory) {
 
-
-		// // runs at page start (catches redirect)
-		// if (!authFactory.isUserStored()) {
-		// 	authFactory.setUser()
-		// 		.then(
-		// 			// fill out user object with another api call
-		// 			success => {
-		// 				return authFactory.fillOutUser();
-		// 			},
-		// 			// log error
-		// 			failure => console.log(`set user failure: `, failure)
-		// 		).then(
-		// 			// redirect to root on success
-		// 			success => {
-		// 				console.log(`fill out success`);
-		// 				$location.path("/");
-		// 				$scope.$apply();
-		// 			},
-		// 			// log error
-		// 			failure => console.log(`fill out user failure: `, failure)
-		// 		);
-		// }
- 
-		// $scope.logout = () => {
-		// 	authFactory.clearUser();
-		// 	$location.path('/register');
-		// 	// need line to get to api/logout path and delete current user
-		// 	// $scope.$apply();
-		// }
+		// likely will contain no specific functionality (moved to Page Controller)
+		// instead will have introduction and Coinbase info in partial (navbar keeps login/logout controls)
 
 		// old OAuth function
 		$scope.coinbaseOauth1 = function () {

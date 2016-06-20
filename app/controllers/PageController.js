@@ -9,38 +9,18 @@ BCAP.controller('PageController', [
 
     $scope.isUserStored = () => authFactory.isUserStored();
 
-    // $scope.isAuthenticated = () => authFactory.isAuthenticated();
-
-    // $scope.logout = () => {
-    //   authFactory.unauthenticate();
-    //   // empty current user upon logout
-    //   $scope.currentUser = {};
-    // };
+    $scope.currentUser = () => authFactory.getUser();
 
     $scope.logout = () => {
       authFactory.clearUser();
       $location.path('/register');
-      // need line to get to api/logout path and delete current user
-      // $scope.$apply();
+      // api /logout path handler in logout link href
     }
 
-    // init pageCtrl command to pull user if authentication has persisted through reload (pullUser otherwise only running on login)
-      // if (authFactory.isAuthenticated()) {
-      //   console.log(`PageCtrl Test Run`);
-      //   authFactory.pullUser(authFactory.getUserID())
-      //   .then(
-      //     userData => {
-      //       console.log(`userData`, userData);
-      //       $scope.currentUser = userData;
-      //     },
-      //     error => console.log("Page Ctrl Pull User Error: ", error)
-      //   );
-      // } else {
-      //   console.log(`Not Authenticated Yet`);
-      // }
-
     // runs at page start (catches redirect)
+    // if no user object stored in authFactory
     if (!authFactory.isUserStored()) {
+      // GET request to BCAP API database for current user (covering already authenticated users in "session-like" state)
       authFactory.setUser()
         .then(
           // fill out user object with another api call
@@ -48,7 +28,7 @@ BCAP.controller('PageController', [
             return authFactory.fillOutUser();
           },
           // log error
-          failure => console.log(`set user failure: `, failure)
+          failure => console.log(`set user failure`)
         ).then(
           // redirect to root on success
           success => {

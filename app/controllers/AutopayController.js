@@ -14,13 +14,6 @@ BCAP.controller('AutopayController', [
 
 		$scope.autopays = [];
 
-		// local logout (might not stay here)
-		// $scope.logout = () => {
-		// 	authFactory.clearUser();
-		// 	$location.path('/register');
-		// 	// $scope.$apply();
-		// }
-
 		$scope.requestInfo = (accessTokenString) => {
 			console.log(`accessTokenString: `, accessTokenString);
 			$http({
@@ -72,6 +65,10 @@ BCAP.controller('AutopayController', [
 					console.log(`scopes GET error: `, error)
 				}
 			);
+		},
+		$scope.parentTest = () => {
+			console.log(`$parent.$scope.currentUser: `, $parent.$scope.currentUser);
+			console.log(`$scope.localUser: `, $scope.localUser);
 		}
 	}
 

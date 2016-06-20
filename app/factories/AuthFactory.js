@@ -45,12 +45,17 @@ BCAP.factory('AuthFactory', ($http) => {
 				.then(
 					// parse user into local currentUser storage
 					response => {
-						console.log(`RegisterController GET response: `, response);
-						parseUser(response);
-						resolve();
-						// redirect to root
-			      // $location.path("/");
-			      // $scope.$apply();
+						if (response.data.length > 0) {
+							console.log(`RegisterController GET response: `, response);
+							parseUser(response);
+							resolve();
+							// redirect to root
+				      // $location.path("/");
+				      // $scope.$apply();
+				    } else {
+				    	console.log('No API Sign In');
+				    	reject();
+				    }
 					},
 					error => {
 						console.log(`setUser error: `, error)
