@@ -3,9 +3,10 @@
 BCAP.controller('AutopayController', [
 	'$http', 
 	'$scope',
+	'$location',
 	'AuthFactory',
 
-	function ($http, $scope, authFactory) {
+	function ($http, $scope, $location, authFactory) {
 
 		// $scope.localUser = {};
 		$scope.localUser = authFactory.getUser();
@@ -64,6 +65,10 @@ BCAP.controller('AutopayController', [
 					console.log(`scopes GET error: `, error)
 				}
 			);
+		},
+		$scope.parentTest = () => {
+			console.log(`$parent.$scope.currentUser: `, $parent.$scope.currentUser);
+			console.log(`$scope.localUser: `, $scope.localUser);
 		}
 	}
 

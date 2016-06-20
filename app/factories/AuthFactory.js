@@ -35,6 +35,7 @@ BCAP.factory('AuthFactory', ($http) => {
 		getUser () {
 			return currentUser;
 		},
+		// pull current user from BCAP database
 		setUser () {
 			return new Promise((resolve, reject) => {
 				$http({
@@ -42,13 +43,19 @@ BCAP.factory('AuthFactory', ($http) => {
 					method: 'GET'
 				})
 				.then(
+					// parse user into local currentUser storage
 					response => {
-						console.log(`RegisterController GET response: `, response);
-						parseUser(response);
-						resolve();
-						// redirect to root
-			      // $location.path("/");
-			      // $scope.$apply();
+						if (response.data.length > 0) {
+							console.log(`RegisterController GET response: `, response);
+							parseUser(response);
+							resolve();
+							// redirect to root
+				      // $location.path("/");
+				      // $scope.$apply();
+				    } else {
+				    	console.log('No API Sign In');
+				    	reject();
+				    }
 					},
 					error => {
 						console.log(`setUser error: `, error)
@@ -85,10 +92,11 @@ BCAP.factory('AuthFactory', ($http) => {
 			});
 		},
 		clearUser () {
+			console.log(`clearUser run`);
 			currentUser = null;
 		},
 
-		isAuthenticated () {
+		isUserStored () {
 			// attempting with CustomerId instead of entire object null
 		// method to check if any user info has been pulled down from API/db
 			return currentUser !== null;

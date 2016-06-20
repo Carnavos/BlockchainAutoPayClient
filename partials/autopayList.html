@@ -12,6 +12,7 @@
       <a href="#/songs/new">Create New Song</a>
     </div>
  -->
+
  	<!-- Temporary User Information Display -->
  	<div>
 	 	<h3>Full Name: {{ localUser.Name }}</h3>
@@ -24,6 +25,7 @@
  	<button ng-click="requestInfo(localUser.AccessToken)">Request Info</button>
  	<button ng-click="requestAccounts(localUser.AccessToken)">Request Accounts</button>
  	<button ng-click="requestScopes(localUser.AccessToken)">Request Scopes</button>
+ 	<button ng-click="parentTest()">User Scope Test</button>
 
   </section>
 

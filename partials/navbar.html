@@ -1,0 +1,11 @@
+<!-- Temporary Nav Bar -->
+<nav>
+  <div>
+    <ul class="right">
+      <li><a href="http://localhost:5000/login" ng-if="!isUserStored()">Login with Coinbase</a></li>
+      <li><a ng-if="isUserStored()">Signed in as {{ $parent.currentUser().Name }}</a></li>
+      <!-- <li><a ng-if="isUserStored()">Signed in as {{ localUser.Name }}</a></li> -->
+      <li><a href="http://localhost:5000/logout" ng-if="isUserStored()" ng-click="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
