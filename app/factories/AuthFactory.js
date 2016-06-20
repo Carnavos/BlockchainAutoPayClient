@@ -17,21 +17,57 @@ BCAP.factory('AuthFactory', ($http) => {
 		currentUser.AccessToken = filteredResponse.AccessToken;
 		console.log(`postParse currentUser: `, currentUser);
 	};
+	
 	// used to add account info to currentUser (operating under assumption there is only one (primary))
-	let addToUser = (apiResponseObject) => {
+	let getPrimaryAccountInfo = (apiResponseObject) => {
 		if (currentUser) {
-			currentUser.Balance = {};
+			currentUser.PrimaryAccount = {};
 		}
 		// clean up response object
-		let filteredResponse = apiResponseObject.data.data[0];
+		let primaryAccount = apiResponseObject.data.data[0];
 
-		// align local user properties to response object properties
-		currentUser.Balance.btcAmount = filteredResponse.balance.amount; // balance has "amount" and "currency" properties
-		currentUser.Balance.usdAmount = filteredResponse.native_balance.amount; // balance has "amount" and "currency" properties
+		// align local user properties to response object "account" properties
+		currentUser.PrimaryAccount.accountId = primaryAccount.id; // balance has "amount" and "currency" properties
+		currentUser.PrimaryAccount.btcAmount = primaryAccount.balance.amount; // balance has "amount" and "currency" properties
+		currentUser.PrimaryAccount.usdAmount = primaryAccount.native_balance.amount; // native_balance can be shown, but transactions should use balance.amount
 		console.log(`postParse currentUser: `, currentUser);
 	};
 
+	// GET request to find transactions associated with current user's primary account id
+	let getTransactions = () => {
+		return new Promise((resolve, reject) => {
+			console.log(`currentUser testlog before Transactions: `, currentUser);
+				$http({
+					url: `https://api.sandbox.coinbase.com/v2/accounts/${currentUser.PrimaryAccount.accountId}/transactions`,
+					method: 'GET',
+					headers: {
+						"Authorization": `Bearer ${currentUser.AccessToken}`
+					}
+				})
+				.then(
+					response => {
+						console.log(`get Transactions response: `, response);
+						addTransactions(response);
+						resolve();
+					},
+					error => {
+						console.log(`get Transactions error: `, error)
+						reject();
+					}
+				);
+		});
+	};
+
+	// add to user object after xhr
+	let addTransactions = (apiResponseObject) => {
+		if (currentUser) {
+			let transactions = apiResponseObject.data; // should be an array
+			currentUser.PrimaryAccount.transactions = transactions;
+		}
+	};
+
 	return {
+
 		getUser () {
 			return currentUser;
 		},
@@ -64,33 +100,44 @@ BCAP.factory('AuthFactory', ($http) => {
 				);
 			});
 		},
-		// add more user information to currentUser object
+
+		// add more user information to currentUser object (now with call to get transactions from primary account id)
 		fillOutUser () {
 			return new Promise((resolve, reject) => {
 				$http({
 					url: `https://api.sandbox.coinbase.com/v2/accounts`,
 					method: 'GET',
 					headers: {
-					"Authorization": `Bearer ${currentUser.AccessToken}`
-				}
-
+						"Authorization": `Bearer ${currentUser.AccessToken}`
+					}
 				})
 				.then(
 					response => {
 						console.log(`fillOutUser GET response: `, response);
-						addToUser(response);
-						resolve();
-						// redirect to root
-			      // $location.path("/");
-			      // $scope.$apply();
+						getPrimaryAccountInfo(response);
+						// get transactions after account info
+						return getTransactions();
 					},
 					error => {
-						console.log(`setUser error: `, error)
+						console.log(`fillOutUser GET error: `, error)
 						reject();
 					}
+				)
+				.then(
+					transactionsResponse => {
+						console.log(`transactions resolve`);
+						// resolve outer promise in page controller
+						resolve();	
+					},
+					error => {
+						console.log(`Transactions GET error: `, error);
+						reject();
+					}
+					// get transactions resolve
 				);
 			});
 		},
+
 		clearUser () {
 			console.log(`clearUser run`);
 			currentUser = null;
@@ -98,7 +145,7 @@ BCAP.factory('AuthFactory', ($http) => {
 
 		isUserStored () {
 			// attempting with CustomerId instead of entire object null
-		// method to check if any user info has been pulled down from API/db
+			// method to check if any user info has been pulled down from API/db
 			return currentUser !== null;
 		}
 	};

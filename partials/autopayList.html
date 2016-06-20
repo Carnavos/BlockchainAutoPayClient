@@ -4,23 +4,23 @@
 
   <section>
 
-<!--     <div ng-repeat="song in songs">
-      <a href="#/songs/{{ song.id }}">{{ song.name }}</a>
-    </div>
-
-    <div style="margin-top: 40px;">
-      <a href="#/songs/new">Create New Song</a>
-    </div>
- -->
 
  	<!-- Temporary User Information Display -->
  	<div>
 	 	<h3>Full Name: {{ localUser.Name }}</h3>
 	 	<p>Coinbase Customer ID: {{ localUser.CustomerId }}</p>
 	 	<p>Current Access Token: {{ localUser.AccessToken }}</p>
-	 	<p>Primary Account Balance (BTC): {{ localUser.Balance.btcAmount }}</p>
-	 	<p>Primary Account Balance (USD): {{ localUser.Balance.usdAmount }}</p>
+	 	<p>Primary Account Balance (BTC): {{ localUser.PrimaryAccount.btcAmount }}</p>
+	 	<p>Primary Account Balance (USD): {{ localUser.PrimaryAccount.usdAmount }}</p>
  	</div>
+
+		<!-- Transactions History Layout -->
+<!--     <div ng-repeat="transaction in transactions">
+      <a href="#/songs/{{ song.id }}">{{ song.name }}</a>
+      <a href="#/songs/new">Create New Song</a>
+      <div>{{ transaction.something }}</div>
+    </div>
+ -->
 
  	<button ng-click="requestInfo(localUser.AccessToken)">Request Info</button>
  	<button ng-click="requestAccounts(localUser.AccessToken)">Request Accounts</button>
