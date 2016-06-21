@@ -13,7 +13,8 @@ BCAP.controller('AutopayController', [
 		console.log(`localUser: `, $scope.localUser);
 
 		// list of all users transactions default sorted by timestamp
-		$scope.transactions = [];
+		// $scope.transactions = [];
+		$scope.transactions = $scope.localUser.PrimaryAccount.transactions;
 		// list of all user autopays based on order entered
 		$scope.autopays = [];
 
@@ -71,7 +72,35 @@ BCAP.controller('AutopayController', [
 				}
 			);
 		};
-		
+
+		// Test transaction between TC and BH
+		$scope.testTransaction = (accessTokenString) => {
+			$http({
+				url: `https://api.sandbox.coinbase.com/v2/accounts/${$scope.localUser.PrimaryAccount.accountId}/transactions`,
+				method: 'POST',
+				headers: {
+					"Authorization": `Bearer ${accessTokenString}`
+				},
+				data: JSON.stringify({
+					type: "send",
+					// accepts email address or bitcoin public key
+					to: "brucehamptontest@gmail.com", // HARDCODED Bruce id
+					amount: "0.001", // in BTC
+					currency: "BTC",
+					description: "test BCAP transaction!"
+					// idem: 
+				})
+			})
+			.then(
+				response => {
+					console.log(`test Transaction response: `, response);
+				},
+				error => {
+					console.log(`test Transaction error: `, error)
+				}
+			);
+		};
+
 	}
 
 ]);

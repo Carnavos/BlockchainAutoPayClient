@@ -1,6 +1,6 @@
 <article class="">
 
-  <header><h1>Sup M8</h1></header>
+  <header><h1>Autopay Landing Page</h1></header>
 
   <section>
 
@@ -15,17 +15,20 @@
  	</div>
 
 		<!-- Transactions History Layout -->
-<!--     <div ng-repeat="transaction in transactions">
-      <a href="#/songs/{{ song.id }}">{{ song.name }}</a>
-      <a href="#/songs/new">Create New Song</a>
-      <div>{{ transaction.something }}</div>
+    <div ng-repeat="transaction in transactions">
+      <!-- <a href="#/songs/{{ song.id }}">{{ song.name }}</a> -->
+      <!-- <a href="#/songs/new">Create New Song</a> -->
+      <div>{{ transaction.created_at }}</div>
+      <div>{{ transaction.details.subtitle }}</div>
+      <div>{{ transaction.description }}</div>
+      <div>{{ transaction.native_amount.amount }} {{ transaction.native_amount.currency }}</div>
     </div>
- -->
+
 
  	<button ng-click="requestInfo(localUser.AccessToken)">Request Info</button>
  	<button ng-click="requestAccounts(localUser.AccessToken)">Request Accounts</button>
  	<button ng-click="requestScopes(localUser.AccessToken)">Request Scopes</button>
- 	<button ng-click="parentTest()">User Scope Test</button>
+ 	<button ng-click="testTransaction(localUser.AccessToken)">Test Transaction (TC to BH)</button>
 
   </section>
 
