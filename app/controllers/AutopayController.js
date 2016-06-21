@@ -12,6 +12,10 @@ BCAP.controller('AutopayController', [
 		$scope.localUser = authFactory.getUser();
 		console.log(`localUser: `, $scope.localUser);
 
+		// list of all users transactions default sorted by timestamp
+		// $scope.transactions = [];
+		$scope.transactions = $scope.localUser.PrimaryAccount.transactions;
+		// list of all user autopays based on order entered
 		$scope.autopays = [];
 
 		$scope.requestInfo = (accessTokenString) => {
@@ -31,7 +35,8 @@ BCAP.controller('AutopayController', [
 					console.log(`info GET error: `, error)
 				}
 			);
-		},
+		};
+
 		$scope.requestAccounts = (accessTokenString) => {
 			$http({
 				url: `https://api.sandbox.coinbase.com/v2/accounts`,
@@ -48,7 +53,8 @@ BCAP.controller('AutopayController', [
 					console.log(`accounts GET error: `, error)
 				}
 			);
-		},
+		}; 
+
 		$scope.requestScopes = (accessTokenString) => {
 			$http({
 				url: `https://api.sandbox.coinbase.com/v2/user/auth`,
@@ -65,11 +71,36 @@ BCAP.controller('AutopayController', [
 					console.log(`scopes GET error: `, error)
 				}
 			);
-		},
-		$scope.parentTest = () => {
-			console.log(`$parent.$scope.currentUser: `, $parent.$scope.currentUser);
-			console.log(`$scope.localUser: `, $scope.localUser);
-		}
+		};
+
+		// Test transaction between TC and BH
+		$scope.testTransaction = (accessTokenString) => {
+			$http({
+				url: `https://api.sandbox.coinbase.com/v2/accounts/${$scope.localUser.PrimaryAccount.accountId}/transactions`,
+				method: 'POST',
+				headers: {
+					"Authorization": `Bearer ${accessTokenString}`
+				},
+				data: JSON.stringify({
+					type: "send",
+					// accepts email address or bitcoin public key
+					to: "brucehamptontest@gmail.com", // HARDCODED Bruce id
+					amount: "0.001", // in BTC
+					currency: "BTC",
+					description: "test BCAP transaction!"
+					// idem: 
+				})
+			})
+			.then(
+				response => {
+					console.log(`test Transaction response: `, response);
+				},
+				error => {
+					console.log(`test Transaction error: `, error)
+				}
+			);
+		};
+
 	}
 
 ]);
