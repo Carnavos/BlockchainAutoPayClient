@@ -38,7 +38,7 @@ BCAP.factory('AuthFactory', ($http) => {
 		return new Promise((resolve, reject) => {
 			console.log(`currentUser testlog before Transactions: `, currentUser);
 				$http({
-					url: `https://api.sandbox.coinbase.com/v2/accounts/${currentUser.PrimaryAccount.accountId}/transactions`,
+					url: `https://api.coinbase.com/v2/accounts/${currentUser.PrimaryAccount.accountId}/transactions`,
 					method: 'GET',
 					headers: {
 						"Authorization": `Bearer ${currentUser.AccessToken}`
@@ -47,7 +47,8 @@ BCAP.factory('AuthFactory', ($http) => {
 				.then(
 					response => {
 						console.log(`get Transactions response: `, response);
-						addTransactions(response);
+						console.log(`dig attempt: `, response.data.data);
+						addTransactions(response.data);
 						resolve();
 					},
 					error => {
@@ -105,7 +106,7 @@ BCAP.factory('AuthFactory', ($http) => {
 		fillOutUser () {
 			return new Promise((resolve, reject) => {
 				$http({
-					url: `https://api.sandbox.coinbase.com/v2/accounts`,
+					url: `https://api.coinbase.com/v2/accounts`,
 					method: 'GET',
 					headers: {
 						"Authorization": `Bearer ${currentUser.AccessToken}`

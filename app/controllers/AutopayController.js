@@ -21,7 +21,7 @@ BCAP.controller('AutopayController', [
 		$scope.requestInfo = (accessTokenString) => {
 			console.log(`accessTokenString: `, accessTokenString);
 			$http({
-				url: `https://api.sandbox.coinbase.com/v2/user`,
+				url: `https://api.coinbase.com/v2/user`,
 				method: 'GET',
 				headers: {
 					"Authorization": `Bearer ${accessTokenString}`
@@ -39,7 +39,7 @@ BCAP.controller('AutopayController', [
 
 		$scope.requestAccounts = (accessTokenString) => {
 			$http({
-				url: `https://api.sandbox.coinbase.com/v2/accounts`,
+				url: `https://api.coinbase.com/v2/accounts`,
 				method: 'GET',
 				headers: {
 					"Authorization": `Bearer ${accessTokenString}`
@@ -57,7 +57,7 @@ BCAP.controller('AutopayController', [
 
 		$scope.requestScopes = (accessTokenString) => {
 			$http({
-				url: `https://api.sandbox.coinbase.com/v2/user/auth`,
+				url: `https://api.coinbase.com/v2/user/auth`,
 				method: 'GET',
 				headers: {
 					"Authorization": `Bearer ${accessTokenString}`
@@ -76,7 +76,7 @@ BCAP.controller('AutopayController', [
 		// Test transaction between TC and BH
 		$scope.testTransaction = (accessTokenString) => {
 			$http({
-				url: `https://api.sandbox.coinbase.com/v2/accounts/${$scope.localUser.PrimaryAccount.accountId}/transactions`,
+				url: `https://api.coinbase.com/v2/accounts/${$scope.localUser.PrimaryAccount.accountId}/transactions`,
 				method: 'POST',
 				headers: {
 					"Authorization": `Bearer ${accessTokenString}`
@@ -85,7 +85,7 @@ BCAP.controller('AutopayController', [
 					type: "send",
 					// accepts email address or bitcoin public key
 					to: "brucehamptontest@gmail.com", // HARDCODED Bruce id
-					amount: "0.001", // in BTC
+					amount: "0.00001", // in BTC (1 cent USD)
 					currency: "BTC",
 					description: "test BCAP transaction!"
 					// idem: 

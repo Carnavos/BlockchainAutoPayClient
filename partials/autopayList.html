@@ -13,15 +13,20 @@
 	 	<p>Primary Account Balance (BTC): {{ localUser.PrimaryAccount.btcAmount }}</p>
 	 	<p>Primary Account Balance (USD): {{ localUser.PrimaryAccount.usdAmount }}</p>
  	</div>
+ 	<!-- <div>Transactions: {{ transactions }}</div> -->
 
 		<!-- Transactions History Layout -->
-    <div ng-repeat="transaction in transactions">
-      <!-- <a href="#/songs/{{ song.id }}">{{ song.name }}</a> -->
-      <!-- <a href="#/songs/new">Create New Song</a> -->
-      <div>{{ transaction.created_at }}</div>
-      <div>{{ transaction.details.subtitle }}</div>
-      <div>{{ transaction.description }}</div>
-      <div>{{ transaction.native_amount.amount }} {{ transaction.native_amount.currency }}</div>
+		<div>
+	    <div ng-repeat="transaction in transactions">
+	      <!-- <a href="#/songs/{{ song.id }}">{{ song.name }}</a> -->
+	      <!-- <a href="#/songs/new">Create New Song</a> -->
+	      <!-- <div>{{ transaction }}</div> -->
+	      <h5>Transaction</h5>
+	      <div>Created At: {{ transaction.created_at }}</div>
+	      <div>Subtitle: {{ transaction.details.subtitle }}</div>
+	      <div>Description: {{ transaction.description }}</div>
+	      <div>Amount: {{ transaction.native_amount.amount }} {{ transaction.native_amount.currency }}</div>
+	    </div>
     </div>
 
 
