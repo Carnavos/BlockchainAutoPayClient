@@ -1,0 +1,19 @@
+<!-- <a href="#" class="list-group-item">
+    <i class="fa fa-comment fa-fw"></i> New Comment
+    <span class="pull-right text-muted small"><em>4 minutes ago</em></span>
+</a> -->
+<!-- working version -->
+<a href="" class="list-group-item">
+    <i class="fa fa-money fa-fw" ng-if="transaction.native_amount.amount > 0"></i>
+    <i class="fa fa-shopping-cart fa-fw" ng-if="transaction.native_amount.amount <= 0"></i> {{ transaction.details.subtitle }}
+    <span class="pull-right text-muted small"><em>{{ transaction.native_amount.amount }} {{ transaction.native_amount.currency }}</em></span>
+</a>
+      <!-- <a href="#/songs/{{ song.id }}">{{ song.name }}</a> -->
+      <!-- <a href="#/songs/new">Create New Song</a> -->
+      <!-- <div>{{ transaction }}</div> -->
+<!--       
+      <h5>Transaction</h5>
+      <div>Created At: {{ transaction.created_at }}</div>
+      <div>Subtitle: {{ transaction.details.subtitle }}</div>
+      <div>Description: {{ transaction.description }}</div>
+      <div>Amount: {{ transaction.native_amount.amount }} {{ transaction.native_amount.currency }}</div> -->
