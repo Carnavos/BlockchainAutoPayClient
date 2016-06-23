@@ -4,26 +4,63 @@
   <head>
     <meta charset="utf-8">
     <title>Blockchain Autopay</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- sb angular styles -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/sb-admin-2.css">
+    <link rel="stylesheet" href="styles/timeline.css">
+    <link rel="stylesheet" href="bower_components/metisMenu/dist/metisMenu.min.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css">
+
   </head>
 
   <body ng-app="BCAP">
 
+<!--     <div ng-controller="PageController">
+  Header and Sidebar
+  <nav ng-include="'partials/navbar.html'"></nav>
+  <nav ng-include="'app/directives/header/header.html'"></nav>
+  <header></header>
+  Main View Div
+  <div ng-view></div>
+</div> -->
     <div ng-controller="PageController">
-      <!-- Header  -->
-      <nav ng-include="'partials/navbar.html'"></nav>
-      <!-- Main View Div  -->
-      <div ng-view></div>
+      
+      <div id="wrapper">
+      <!-- <nav ng-include="'app/directives/header/header.html'"></nav> -->
+
+        <!-- Navigation -->
+        <header></header>
+        
+        <!-- /.navbar-top-links -->
+        
+               
+        <!-- /.navbar-static-side -->
+        <div id="page-wrapper" style="min-height: 561px;">
+
+          <!-- Main View  -->
+          <div ng-view></div>
+            
+        </div>
+        <!-- /#page-wrapper -->
     </div>
 
-    <!-- <div ng-view></div> -->
-    
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    </div>
+
+    <!-- <script src="node_modules/jquery/dist/jquery.min.js"></script> -->
+    <!-- older jQuery to work with Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-route/angular-route.min.js"></script>
     <script src="bower_components/oauth-js/dist/oauth.min.js"></script>
 
 
     <script src="app/app.js"></script>
+    <script src="app/auxScripts/sb-admin-2.js"></script>
     <!-- Factories -->
     <script src="app/factories/AuthFactory.js"></script>
     <script src="app/factories/AutopayFactory.js"></script>
@@ -31,6 +68,19 @@
     <script src="app/controllers/PageController.js"></script>
     <script src="app/controllers/AutopayController.js"></script>
     <script src="app/controllers/RegisterController.js"></script>
+    <!-- Directives -->
+    <script src="app/directives/header/header.js"></script>
+    <script src="app/directives/header/header-notification/header-notification.js"></script>
+    <script src="app/directives/sidebar/sidebar.js"></script>
+    <script src="app/directives/sidebar/sidebar-search/sidebar-search.js"></script>
+
+
+    <!-- sb admin bower plugins -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
   </body>
 </html>
