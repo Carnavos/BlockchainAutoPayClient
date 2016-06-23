@@ -3,7 +3,7 @@
     <span class="pull-right text-muted small"><em>4 minutes ago</em></span>
 </a> -->
 <!-- working version -->
-<a href="" class="list-group-item">
+<a href="" class="list-group-item" ng-class="transaction.native_amount.amount > 0 ? 'panel-success' : 'panel-danger'">
     <i class="fa fa-money fa-fw" ng-if="transaction.native_amount.amount > 0"></i>
     <i class="fa fa-shopping-cart fa-fw" ng-if="transaction.native_amount.amount <= 0"></i> {{ transaction.details.subtitle }}
     <span class="pull-right text-muted small"><em>{{ transaction.native_amount.amount }} {{ transaction.native_amount.currency }}</em></span>
