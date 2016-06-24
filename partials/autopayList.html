@@ -16,14 +16,14 @@
         <div class="col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-clock-o fa-fw"></i> Autopays
+                    <i class="fa fa-clock-o fa-fw"></i> Bitcoin Spending Trend
                 </div>
                 <!-- /.panel-heading -->
 
                 <!-- AUTOPAY DIRECTIVE -->
                 <!-- <autopay></autopay> -->
 
-                <div spending-chart chart-data="reversedTransactions"></div>
+                <div spending-chart chart-data="transactions"></div>
 
             <!-- /.panel-body -->
             </div>
@@ -48,12 +48,12 @@
     <!-- /.row -->
 </div>
 
-<!-- old situation  -->
+<!-- old situation
 <article class="">
 
   <section>
 
-	 	<!-- Temporary User Information Display -->
+	 	Temporary User Information Display
 	 	<div>
 		 	<h3>Full Name: {{ localUser.Name }}</h3>
 		 	<p>Coinbase Customer ID: {{ localUser.CustomerId }}</p>
@@ -61,10 +61,10 @@
 		 	<p>Primary Account Balance (BTC): {{ localUser.PrimaryAccount.btcAmount }}</p>
 		 	<p>Primary Account Balance (USD): {{ localUser.PrimaryAccount.usdAmount }}</p>
 	 	</div>
-	 	<!-- <div>Transactions: {{ transactions }}</div> -->
+	 	<div>Transactions: {{ transactions }}</div>
 
-			<!-- Transactions History Layout -->
-<!-- 			<div>
+			Transactions History Layout
+<div>
 		    <div ng-repeat="transaction in transactions">
 		      <a href="#/songs/{{ song.id }}">{{ song.name }}</a>
 		      <a href="#/songs/new">Create New Song</a>
@@ -75,7 +75,7 @@
 		      <div>Description: {{ transaction.description }}</div>
 		      <div>Amount: {{ transaction.native_amount.amount }} {{ transaction.native_amount.currency }}</div>
 		    </div>
-	    </div> -->
+	    </div>
 
 
 	 	<button ng-click="requestInfo(localUser.AccessToken)">Request Info</button>
@@ -85,4 +85,4 @@
 
   </section>
 
-</article>
+</article> -->

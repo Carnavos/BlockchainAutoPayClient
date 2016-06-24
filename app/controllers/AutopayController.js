@@ -15,16 +15,6 @@ BCAP.controller('AutopayController', [
 		// list of all users transactions default sorted by timestamp
 		$scope.transactions = $scope.localUser.PrimaryAccount.transactions;
 
-		// reverse and convert amount into integer (sent from coinbase newest to oldest)
-		$scope.reversedTransactions = $scope.transactions.reverse();
-
-	 	// $interval(function(){
-   //    var hour=$scope.salesData.length+1;
-   //    var sales= Math.round(Math.random() * 100);
-   //    $scope.salesData.push({hour: hour, sales:sales});
-   //  }, 1000, 10);
-
-
 		// list of all user autopays based on order entered
 		// $scope.autopays = [];
 

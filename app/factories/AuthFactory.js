@@ -29,7 +29,7 @@ BCAP.factory('AuthFactory', ($http) => {
 
 		// align local user properties to response object "account" properties
 		currentUser.PrimaryAccount.accountId = primaryAccount.id; // balance has "amount" and "currency" properties
-		currentUser.PrimaryAccount.btcAmount = primaryAccount.balance.amount; // balance has "amount" and "currency" properties
+		currentUser.PrimaryAccount.btcAmount = primaryAccount.balance.amount;
 		currentUser.PrimaryAccount.usdAmount = primaryAccount.native_balance.amount; // native_balance can be shown, but transactions should use balance.amount
 		console.log(`postParse currentUser: `, currentUser);
 	};
@@ -65,17 +65,10 @@ BCAP.factory('AuthFactory', ($http) => {
 		if (currentUser) {
 			let transactions = apiResponseObject.data; // should be an array
 
-			// need to parse amount strings into floats
+			// convert amount strings into floats
 			transactions.forEach(element => {
 				element.amount.amount = parseFloat(element.amount.amount);
 			});
-			// let testParse = parseFloat(transactions[0].amount.amount);
-			// console.log(`test transaction parse: `, testParse);
-
-			// date testing
-			// let testDate = transactions[0].created_at;
-			// console.log(`testDate before: `, testDate);
-			// console.log(`testDate after: `, new Date(testDate));
 
 			currentUser.PrimaryAccount.transactions = transactions;
 		}

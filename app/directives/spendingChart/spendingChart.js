@@ -1,5 +1,6 @@
 'use strict';
 
+// D3 chart for analyzing spending history
 BCAP.directive('spendingChart', function($parse, $window){
 		return {
         restrict: 'EA',
@@ -27,7 +28,7 @@ BCAP.directive('spendingChart', function($parse, $window){
 		        // d.created_at = formatDate.parse(d.created_at);
 		        d.created_at = new Date(d.created_at);
 		        console.log(`d.created_at: `, d.created_at);
-		        console.log(`d.created_at typeof: `, typeof d.created_at);
+		        // console.log(`d.created_at typeof: `, typeof d.created_at);
 		        d.close = +d.close;
 		        return d;
 			    });
@@ -43,19 +44,22 @@ BCAP.directive('spendingChart', function($parse, $window){
 						console.log(`setChartParameters salesDataToPlot: `, salesDataToPlot);
 						// created_at for timestamp , object.amount.amount (is string) for 
 					   xScale = d3.time.scale()
-					       .domain([new Date(salesDataToPlot[0].created_at), new Date(salesDataToPlot[salesDataToPlot.length-1].created_at)])	
+					   			// reverse domain order since data is reversed
+					       .domain([new Date(salesDataToPlot[salesDataToPlot.length-1].created_at), new Date(salesDataToPlot[0].created_at)])	
 					       .range([padding + 5, rawSvg.attr("width") - padding]);
 
 					   yScale = d3.scale.linear()
-					       .domain([0, d3.max(salesDataToPlot, function (d) {
+					       .domain([d3.min(salesDataToPlot, function (d) {
+					       	return d.amount.amount;
+					       }), d3.max(salesDataToPlot, function (d) {
 					           return d.amount.amount;
 					       })])
 					       .range([rawSvg.attr("height") - padding, 0]);
 
+
 					   xAxisGen = d3.svg.axis()
 					       .scale(xScale)
-					       .orient("bottom")
-					       // .ticks(salesDataToPlot.length - 1);
+					       .orient("center")
 					       .ticks(10);
 
 					   yAxisGen = d3.svg.axis()
@@ -70,7 +74,7 @@ BCAP.directive('spendingChart', function($parse, $window){
 					       .y(function (e) {
 					           return yScale(e.amount.amount);
 					       })
-					       .interpolate("basis");
+					       .interpolate("linear");
 					}
 
 					function drawLineChart() {
@@ -90,8 +94,8 @@ BCAP.directive('spendingChart', function($parse, $window){
 					   svg.append("svg:path")
 					       .attr({
 					           d: lineFun(salesDataToPlot),
-					           "stroke": "blue",
-					           "stroke-width": 2,
+					           "stroke": "#666",
+					           "stroke-width": 1.5,
 					           "fill": "none",
 					           "class": pathClass
 					       });
