@@ -15,6 +15,7 @@ BCAP.factory('AuthFactory', ($http) => {
 		currentUser.Name = filteredResponse.FullName;
 		currentUser.CustomerId = filteredResponse.CustomerId;
 		currentUser.AccessToken = filteredResponse.AccessToken;
+		currentUser.ProfilePic = filteredResponse.ProfilePicUrl;
 		console.log(`postParse currentUser: `, currentUser);
 	};
 	
