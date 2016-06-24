@@ -64,6 +64,19 @@ BCAP.factory('AuthFactory', ($http) => {
 	let addTransactions = (apiResponseObject) => {
 		if (currentUser) {
 			let transactions = apiResponseObject.data; // should be an array
+
+			// need to parse amount strings into floats
+			transactions.forEach(element => {
+				element.amount.amount = parseFloat(element.amount.amount);
+			});
+			// let testParse = parseFloat(transactions[0].amount.amount);
+			// console.log(`test transaction parse: `, testParse);
+
+			// date testing
+			// let testDate = transactions[0].created_at;
+			// console.log(`testDate before: `, testDate);
+			// console.log(`testDate after: `, new Date(testDate));
+
 			currentUser.PrimaryAccount.transactions = transactions;
 		}
 	};
