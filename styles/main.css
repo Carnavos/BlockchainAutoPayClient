@@ -3,6 +3,14 @@ body {
     padding-bottom: 20px;
 }
 
+/* Equal Height Rows */
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
