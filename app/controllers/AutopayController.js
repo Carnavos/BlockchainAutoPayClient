@@ -13,10 +13,10 @@ BCAP.controller('AutopayController', [
 		console.log(`localUser: `, $scope.localUser);
 
 		// list of all users transactions default sorted by timestamp
-		// $scope.transactions = [];
 		$scope.transactions = $scope.localUser.PrimaryAccount.transactions;
+
 		// list of all user autopays based on order entered
-		$scope.autopays = [];
+		// $scope.autopays = [];
 
 		$scope.requestInfo = (accessTokenString) => {
 			console.log(`accessTokenString: `, accessTokenString);
