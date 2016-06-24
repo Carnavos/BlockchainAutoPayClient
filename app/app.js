@@ -27,8 +27,7 @@ BCAP.config(['$routeProvider',
 				resolve: { isAuth }
 			})
 			.when('/register', {
-				templateUrl: 'partials/login.html',
-				controller: 'RegisterController'
+				templateUrl: 'partials/login.html'
 			})
 			.otherwise({
 				redirectTo: '/register'
