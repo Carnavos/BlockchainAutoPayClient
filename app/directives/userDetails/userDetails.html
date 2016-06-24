@@ -1,0 +1,85 @@
+<div class="row">
+    <!-- placeholder column -->
+    <!-- <div class="col-lg-3 col-md-6"></div> -->
+
+    <div class="col-lg-6 col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6 text-left">
+                        <!-- <i class="fa fa-btc fa-4x"></i> -->
+                        <!-- <img ng-src="https://res.cloudinary.com/coinbase/image/upload/c_fill,h_128,w_128/m3qjcflk019mbxw843gm.png" alt="Profile Pic"> -->
+                        <img class="img-rounded" ng-src="{{ localUser.ProfilePic }}" alt="Profile Pic">
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <div class="medium">{{ localUser.Name }}</div>
+                    </div>
+                </div>
+            </div>
+                <div class="panel-footer">
+                    <!-- <span class="pull-left">View Details</span> -->
+                    <!-- <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span> -->
+                    <div class="clearfix"></div>
+                </div>
+        </div>
+    </div>
+
+<!--     <div class="col-lg-3 col-md-6">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <i class="fa fa-btc fa-4x"></i>
+                    <div>Balance</div>
+                    <div class="huge">{{ localUser.PrimaryAccount.btcAmount }}</div>
+                </div>
+            </div>
+        </div>
+            <div class="panel-footer">
+                <span class="pull-left">View Details</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+    </div>
+</div> -->
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <i class="fa fa-btc fa-4x"></i>
+                        <!-- <div>Balance</div> -->
+                        <div class="huge">{{ localUser.PrimaryAccount.btcAmount }}</div>
+                    </div>
+                </div>
+            </div>
+                <div class="panel-footer">
+                    <!-- <span class="pull-left">View Details</span> -->
+                    <!-- <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span> -->
+                    <div class="clearfix"></div>
+                </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <!-- <div>Balance</div> -->
+                        <i class="fa fa-usd fa-4x"></i>
+                        <div class="huge">{{ localUser.PrimaryAccount.usdAmount }}</div>
+                    </div>
+                </div>
+            </div>
+                <div class="panel-footer">
+                    <!-- <span class="pull-left">View Details</span> -->
+                    <!-- <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span> -->
+                    <div class="clearfix"></div>
+                </div>
+        </div>
+    </div>
+
+
+</div>
